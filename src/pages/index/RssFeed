@@ -1,0 +1,42 @@
+import React, { useEffect, useState } from "react";
+import Parser from "rss-parser";
+
+const RssFeed = () => {
+  const [feedItems, setFeedItems] = useState<Parser.Item[]>([]);
+
+  useEffect(() => {
+    const fetchRssFeed = async () => {
+      try {
+        const parser = new Parser();
+        const feed = await parser.parseURL(
+          "https://chuyendoiso.laichau.gov.vn/rss/tin-tong-hop/"
+        );
+
+        // Lấy 10 mục đầu tiên
+        const items = feed.items.slice(0, 10);
+        setFeedItems(items);
+      } catch (error) {
+        console.error("Error fetching RSS feed:", error);
+      }
+    };
+
+    fetchRssFeed();
+  }, []);
+
+  return (
+    <div>
+      <h1>RSS Feed</h1>
+      <ul>
+        {feedItems.map((item, index) => (
+          <li key={index}>
+            <a href={item.link} target="_blank" rel="noopener noreferrer">
+              {item.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default RssFeed;

@@ -1,0 +1,10 @@
+
+const scraperController = async (browserIstance) => {
+  try {
+    browser = await browserIstance
+  } catch (e) {
+    console.log('loi scraperController'+e);
+  }
+
+}
+module.exports = scraperController

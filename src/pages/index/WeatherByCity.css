@@ -1,0 +1,51 @@
+/* Định dạng tiêu đề */
+.weather-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff5733;
+  margin-bottom: 20px;
+}
+/* Định dạng khung mục thời tiết */
+.weather-container {
+  border: 1px solid #ccc; /* Định dạng viền */
+  padding: 20px; /* Định dạng khoảng cách bên trong khung */
+  border-radius: 10px; /* Định dạng viền cong */
+}
+
+/* Định dạng các phần tử con trong phần hiển thị thông tin thời tiết */
+.weather-info > div {
+  margin-right: 35px;
+  text-align: center; /* Căn giữa ngang nội dung */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Căn giữa dọc nội dung */
+}
+
+/* Định dạng phần hiển thị thông tin thời tiết */
+.weather-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* Định dạng các phần tử con trong phần hiển thị thông tin thời tiết */
+.weather-info > div {
+  margin-right: 15px;
+}
+
+/* Định dạng văn bản nhiệt độ */
+.temperature-text {
+  font-size: 16px;
+  color: #ff5733; /* Màu cam */
+}
+/* Định dạng văn bản độ ẩm */
+.humidity-text {
+  font-size: 16px;
+  color: #3399ff; /* Màu xanh dương */
+}
+
+/* Định dạng văn bản tốc độ gió */
+.wind-text {
+  font-size: 16px;
+  color: #33cc33; /* Màu xanh lá cây */
+}

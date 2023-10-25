@@ -1,0 +1,59 @@
+// WeatherWidget.tsx
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import cheerio from "cheerio";
+
+const WeatherWidget: React.FC = () => {
+  const [weatherData, setWeatherData] = useState({
+    temperature: "",
+    weatherDescription: "",
+    humidity: "",
+    windDirection: "",
+  });
+
+  useEffect(() => {
+    // Gửi yêu cầu GET đến trang web và trích xuất dữ liệu
+    axios
+      .get("https://nchmf.gov.vn/Kttvsite/vi-VN/1/lai-chau-w64.html")
+      .then((response) => {
+        const htmlContent = response.data;
+        const $ = cheerio.load(htmlContent);
+
+        const temperature = $(
+          ".list-info-wt li:nth-child(1) .uk-width-3-4"
+        ).text();
+        const weatherDescription = $(
+          ".list-info-wt li:nth-child(2) .uk-width-3-4"
+        ).text();
+        const humidity = $(
+          ".list-info-wt li:nth-child(3) .uk-width-3-4"
+        ).text();
+        const windDirection = $(
+          ".list-info-wt li:nth-child(4) .uk-width-3-4"
+        ).text();
+
+        setWeatherData({
+          temperature,
+          weatherDescription,
+          humidity,
+          windDirection,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  return (
+    <div className="weather-widget">
+      <h2>Weather Information</h2>
+      <p>Temperature: {weatherData.temperature}</p>
+      <p>Weather Description: {weatherData.weatherDescription}</p>
+      <p>Humidity: {weatherData.humidity}</p>
+      <p>Wind Direction: {weatherData.windDirection}</p>
+    </div>
+  );
+};
+
+export default WeatherWidget;

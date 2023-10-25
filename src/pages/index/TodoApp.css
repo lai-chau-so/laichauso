@@ -1,0 +1,35 @@
+.todo-app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.todo-list {
+  width: 50%;
+  border-right: 1px solid #ccc;
+  padding: 20px;
+}
+
+.todo-details {
+  width: 50%;
+  padding: 20px;
+}
+
+h1,
+h2,
+h3 {
+  color: #333;
+}
+.slide-container {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.slide-item {
+  min-width: 200px; /* Điều chỉnh độ rộng của từng mục */
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #ccc;
+}

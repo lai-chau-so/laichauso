@@ -1,0 +1,44 @@
+// import React, { FC } from "react";
+import { Product } from "types/product";
+
+interface ProductLinkProps {
+  product: Product;
+}
+
+export const ProductLink: FC<ProductLinkProps> = ({ product }) => {
+  const redirectToURL = (productId: number) => {
+    // Tạo một danh sách các URL tương ứng với từng ID sản phẩm
+    const productUrls = {
+      1: "https://dichvucong.laichau.gov.vn/dich-vu-cong/cong-dan/dang-nhap?return-url=%2Fdichvucong%2Ftiepnhanonline",
+      2: "https://dichvucong.laichau.gov.vn/dichvucong/tracuu",
+      3: "https://dichvucong.gov.vn/p/phananhkiennghi/pakn-gui-pakn.html",
+      // Thêm các URL tương ứng với các ID sản phẩm khác
+    };
+
+    // Kiểm tra xem có URL tương ứng với ID sản phẩm không
+    const productUrl = productUrls[productId];
+    if (productUrl) {
+      // Chuyển đến URL tương ứng
+      window.location.href = productUrl;
+    }
+  };
+
+  const handleProductClick = () => {
+    if (product && product.id) {
+      // Gọi hàm redirectToURL với ID sản phẩm để chuyển đến URL tương ứng
+      redirectToURL(product.id);
+    }
+  };
+
+  return (
+    <div onClick={handleProductClick}>
+      {/* <img
+        src={product.image}
+        alt={product.name}
+        style={{ cursor: "pointer", width: "200px", height: "180px" }} // Đặt kích thước ảnh ở đây
+        onClick={handleProductClick}
+      /> */}
+      <div className="mt-2">{product.name}</div>
+    </div>
+  );
+};

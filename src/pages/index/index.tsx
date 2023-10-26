@@ -4,7 +4,7 @@ import { Box, Page } from "zmp-ui";
 import { Welcome } from "./welcome";
 import { Banner } from "./banner";
 import { Categories } from "./categories";
-import { Recommend } from "./recommend";
+import { RecommendContent } from "./recommend";
 // import { ProductList } from "./product-list";
 import { Divider } from "components/divider";
 import WeatherByCoordinates from "./WeatherByCoordinates";
@@ -21,7 +21,7 @@ const HomePage: React.FunctionComponent = () => {
           <Categories />
         </Suspense>
         <Divider />
-        <Recommend />
+        <RecommendContent />
         <Divider />
         {/* <ProductList /> */}
         <Divider />

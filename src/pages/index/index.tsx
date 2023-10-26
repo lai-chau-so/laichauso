@@ -9,7 +9,6 @@ import { Recommend } from "./recommend";
 import { Divider } from "components/divider";
 import WeatherByCoordinates from "./WeatherByCoordinates";
 import htmlContent from "./ScrapedDataList";
-import DataDisplay from "./DataDisplay";
 const HomePage: React.FunctionComponent = () => {
   return (
     <Page className="relative flex-1 flex flex-col bg-white">
@@ -28,8 +27,6 @@ const HomePage: React.FunctionComponent = () => {
         <Divider />
         {/* <SqlContent /> */}
         <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
-        {/* <TodoApp /> */}
-        {/* <DataDisplay /> */}
       </Box>
     </Page>
   );

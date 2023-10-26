@@ -46,17 +46,23 @@ const WeatherByCity: React.FC = () => {
 
           <div className="temperature-info">
             <img
-              src="./docs/thoitiet/icon-temperature.png"
+              src="https://raw.githubusercontent.com/lai-chau-so/laichauso/master/docs/thoitiet/icon-temperature.png"
               alt="Temperature Icon"
             />
             <p className="temperature-text">{temperature}°C</p>
           </div>
           <div className="humidity-info">
-            <img src="./docs/thoitiet/icon-humidity.png" alt="Humidity Icon" />
+            <img
+              src="https://raw.githubusercontent.com/lai-chau-so/laichauso/master/docs/thoitiet/icon-humidity.png"
+              alt="Humidity Icon"
+            />
             <p className="humidity-text">{humidity}%</p>
           </div>
           <div className="wind-info">
-            <img src="./docs/thoitiet/icon-wind.png" alt="Wind Icon" />
+            <img
+              src="https://raw.githubusercontent.com/lai-chau-so/laichauso/master/docs/thoitiet/icon-wind.png"
+              alt="Wind Icon"
+            />
             <p className="wind-text">{windSpeed.toFixed(1)} m/s</p>
           </div>
         </div>

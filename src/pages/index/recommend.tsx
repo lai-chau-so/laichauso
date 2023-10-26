@@ -84,6 +84,64 @@
 //     </Suspense>
 //   );
 // };
+
+// // Hiển thị ảnh từ file JSON trên GITHUB
+// import React, { FC, useEffect, useState } from "react";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Box, Text } from "zmp-ui";
+
+// const ScraperData = () => {
+//   // State để lưu trữ dữ liệu từ scraperData.json
+//   const [scraperData, setScraperData] = useState<
+//     { imageUrl: string; title: string }[]
+//   >([]);
+
+//   // Sử dụng useEffect để đọc dữ liệu từ scraperData.json khi component được mount
+//   useEffect(() => {
+//     // Sử dụng fetch để đọc tệp scraperData.json
+//     fetch(
+//       "https://raw.githubusercontent.com/lai-chau-so/laichauso/master/src/pages/index/scraperData.json#L2"
+//     )
+//       .then((response) => response.json())
+//       .then((data) => {
+//         // Lưu trữ dữ liệu vào state scraperData
+//         setScraperData(data);
+//       })
+//       .catch((error) => {
+//         console.error("Lỗi khi đọc tệp scraperData.json", error);
+//       });
+//   }, []);
+
+//   return (
+//     <Box className="bg-white p-4">
+//       <Text size="large" className="font-medium text-primary">
+//         Tin tức
+//       </Text>
+//       <Swiper slidesPerView={1.25} spaceBetween={16} className="px-4">
+//         {scraperData.map((data, index) => (
+//           <SwiperSlide key={index}>
+//             <div className="space-y-3">
+//               <Box
+//                 className="relative aspect-video rounded-lg bg-cover bg-center bg-skeleton"
+//                 style={{ backgroundImage: `url(${data.imageUrl})` }}
+//               >
+//                 {/* Không có dữ liệu sale ở đây */}
+//               </Box>
+//               <Box className="space-y-1">
+//                 <Text size="small">{data.title}</Text>
+//                 {/* Không có dữ liệu giá ở đây */}
+//               </Box>
+//             </div>
+//           </SwiperSlide>
+//         ))}
+//       </Swiper>
+//     </Box>
+//   );
+// };
+
+// export const RecommendContent: FC = () => {
+//   return <ScraperData />;
+// };
 import React, { FC, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Box, Text } from "zmp-ui";
@@ -98,7 +156,7 @@ const ScraperData = () => {
   useEffect(() => {
     // Sử dụng fetch để đọc tệp scraperData.json
     fetch(
-      "https://raw.githubusercontent.com/lai-chau-so/laichauso/master/src/pages/index/scraperData.json#L2"
+      "https://raw.githubusercontent.com/lai-chau-so/laichauso/master/src/pages/index/scraperData.json"
     )
       .then((response) => response.json())
       .then((data) => {
@@ -109,6 +167,11 @@ const ScraperData = () => {
         console.error("Lỗi khi đọc tệp scraperData.json", error);
       });
   }, []);
+
+  // Hàm kiểm tra định dạng hình ảnh
+  const isImageFormatValid = (imageUrl) => {
+    return imageUrl.match(/\.(jpeg|jpg|png|gif)$/);
+  };
 
   return (
     <Box className="bg-white p-4">
@@ -121,7 +184,13 @@ const ScraperData = () => {
             <div className="space-y-3">
               <Box
                 className="relative aspect-video rounded-lg bg-cover bg-center bg-skeleton"
-                style={{ backgroundImage: `url(${data.imageUrl})` }}
+                style={{
+                  backgroundImage: `url(${data.imageUrl})`,
+                  // Kiểm tra và cài đặt kiểu hiển thị hình ảnh
+                  backgroundSize: isImageFormatValid(data.imageUrl)
+                    ? "cover"
+                    : "contain",
+                }}
               >
                 {/* Không có dữ liệu sale ở đây */}
               </Box>
